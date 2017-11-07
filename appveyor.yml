@@ -1,0 +1,30 @@
+-
+  #.NET Core config from https://dotnetcore.gaprogman.com/2017/06/08/continuous-integration-and-appveyor/
+  deploy:
+    - provider: Environment
+      name: AllowanceFrontEnd-Production
+  image: Visual Studio 2017
+  branches:
+    only:
+      - production
+  # Test against the latest version of this Node.js version
+  environment:
+    nodejs_version: "6"
+  # Install scripts. (runs after repo cloning)
+  install:
+    # Get the latest stable version of Node.js or io.js
+    - ps: Install-Product node $env:nodejs_version
+    # install modules
+    - npm install
+  before_build:
+    # Display Node version
+    - node --version
+    # Display npm version
+    - npm --version
+  build_script:
+    # output will be in ./src/bin/debug/netcoreapp1.1/publish
+    - npm run build
+  artifacts:
+    - path: '\build'
+      name: AllowanceApp
+      type: WebDeploy
