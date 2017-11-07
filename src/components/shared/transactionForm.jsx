@@ -67,7 +67,7 @@ class TransactionForm extends Component {
 	handleDateChange(momentEvent) {
 		this.setState({
 			transaction: Object.assign({}, this.state.transaction, {
-				TransactionDate: momentEvent.toDate(),
+				transactionDate: momentEvent.toDate(),
 			})
 		})
 	}
@@ -100,7 +100,7 @@ class TransactionForm extends Component {
 								<label htmlFor="transactionAmount">Transaction Amount </label>
 								<div className="input-group">
 									<span className="input-group-addon">$</span>
-									<input type="number" className="form-control" placeholder="Transaction Amount" name="value" value={this.state.transaction.value} onChange={this.handleInputChange} />
+									<input type="number" step="0.01" className="form-control" placeholder="Transaction Amount" name="value" value={this.state.transaction.value} onChange={this.handleInputChange} />
 								</div>
 							</div>
 						</div>
