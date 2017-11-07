@@ -2,28 +2,28 @@ import AxiosHttp from './axiosHttp';
 
 class BudgetApi {
 	static getBudget() {
-		return AxiosHttp.get('http://localhost:32676/api/budgets')
+		return AxiosHttp.get('http://allowanceapi-production.azurewebsites.net/api/budgets')
 			.then(function (response) {
 				return response.data;
 			});
 	}
 
 	static editBudget(budgetId, budget) {
-		return AxiosHttp.put(`http://localhost:32676/api/budgets/${budgetId}`, budget)
+		return AxiosHttp.put(`http://allowanceapi-production.azurewebsites.net/api/budgets/${budgetId}`, budget)
 			.then(function (response) {
 				return response.data;
 			});
 	}
 
 	static addTransaction(budgetId, transaction) {
-		return AxiosHttp.post(`http://localhost:32676/api/budgets/${budgetId}/transactions`, transaction)
+		return AxiosHttp.post(`http://allowanceapi-production.azurewebsites.net/api/budgets/${budgetId}/transactions`, transaction)
 			.then(function (response) {
 				return response.data;
 			});
 	}
 
 	static editTransaction(budgetId, transaction) {
-		return AxiosHttp.put(`http://localhost:32676/api/budgets/${budgetId}/transactions/${transaction.transactionId}`, transaction)
+		return AxiosHttp.put(`http://allowanceapi-production.azurewebsites.net/api/budgets/${budgetId}/transactions/${transaction.transactionId}`, transaction)
 			.then(function (response) {
 				return response.data;
 			});
@@ -61,7 +61,7 @@ class BudgetApi {
 		let promises = [];
 		for (const transaction of transactions) {
 			promises.push(new Promise((resolve, reject) => {
-				AxiosHttp.delete(`http://localhost:32676/api/budgets/${budgetId}/transactions/${transaction.transactionId}`).then(resolve, reject);
+				AxiosHttp.delete(`http://allowanceapi-production.azurewebsites.net/api/budgets/${budgetId}/transactions/${transaction.transactionId}`).then(resolve, reject);
 			}))
 		}
 		return Promise.all(promises);

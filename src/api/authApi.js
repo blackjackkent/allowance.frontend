@@ -3,7 +3,7 @@ import ls from 'local-storage';
 
 class AuthApi {
 	static login(submittedUsername, submittedPassword) {
-		return AxiosHttp.post('http://localhost:32676/api/auth/token',
+		return AxiosHttp.post('http://allowanceapi-production.azurewebsites.net/api/auth/token',
 			{
 				Username: submittedUsername,
 				Password: submittedPassword
