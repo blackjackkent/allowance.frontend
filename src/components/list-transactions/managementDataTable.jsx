@@ -6,7 +6,7 @@ import NumberFormat from 'react-number-format';
 import ManagementDataTableRow from './managementDataTableRow.jsx';
 
 const StyledDataTable = styled.div`
-	width: 75%; 
+	width: 75%;
 	margin: auto;
 	thead tr {
 		font-size: 14px;
@@ -22,6 +22,9 @@ class ManagementDataTable extends Component {
 		}
 		var rows = [];
 		var transactions = this.props.transactions.filter((transaction) => transaction.transactionType === parseInt(this.props.transactionType));
+		transactions = transactions.sort(function (a, b) {
+			return new Date(b.transactionDate) - new Date(a.transactionDate);
+		});
 		for (var i = 0; i < transactions.length; i++) {
 			rows.push(<ManagementDataTableRow transaction={transactions[i]} key={transactions[i].transactionId} onRowSelectionToggle={this.props.onRowSelectionToggle} />);
 		}
