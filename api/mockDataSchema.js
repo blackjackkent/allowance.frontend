@@ -27,9 +27,21 @@ export const schema = {
 				"monthlySavings": {
 					"type": "number",
 					"faker": "finance.amount"
+				},
+				"monthlyBills": {
+					"type": "number",
+					"faker": "finance.amount"
+				},
+				"monthlyIncome": {
+					"type": "number",
+					"faker": "finance.amount"
+				},
+				"monthlyExpenses": {
+					"type": "number",
+					"faker": "finance.amount"
 				}
 			},
-			"required": ["id", "remainingSpendPerDay", "month", "year", "monthlySavings"]
+			"required": ["id", "remainingSpendPerDay", "month", "year", "monthlySavings", "monthlyBills", "monthlyIncome", "monthlyExpenses"]
 		},
 	},
 	"required": ["budget"],

@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 import { Navbar } from 'react-bootstrap';
+import PropTypes from 'prop-types';
 
 import HeaderLinks from './HeaderLinks.jsx';
 
 import appRoutes from '../../../../routes/routes.js';
+
+
+const propTypes = {
+	user: PropTypes.shape({
+		id: PropTypes.string
+	}).isRequired
+};
 
 class Header extends Component {
 	constructor(props) {
@@ -56,6 +64,7 @@ class Header extends Component {
 		return name;
 	}
 	render() {
+		const { user } = this.props;
 		return (
 			<Navbar fluid>
 				<Navbar.Header>
@@ -67,7 +76,7 @@ class Header extends Component {
 					<a href="#" className='btn btn-success'>Record Transaction</a>
 				</Navbar.Header>
 				<Navbar.Collapse>
-					<HeaderLinks />
+					<HeaderLinks user={user} />
 				</Navbar.Collapse>
 			</Navbar>
 		);

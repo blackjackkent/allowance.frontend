@@ -9,11 +9,30 @@ import Sidebar from '../../components/core/Sidebar/Sidebar';
 import Header from '../../components/core/Header/Header';
 import Footer from '../../components/core/Footer/Footer';
 import appRoutes from '../../../routes/routes.js';
+import { fetchUser } from '../../../infrastructure/actions';
 
+
+const propTypes = {
+	dispatch: PropTypes.func.isRequired,
+	user: PropTypes.shape({
+		id: PropTypes.string.isRequired
+	}).isRequired
+};
 function mapStateToProps(state) {
-	return state;
+	const {
+		user
+	} = state;
+	return {
+		user
+	};
 }
 class Full extends Component {
+	componentDidMount() {
+		const { dispatch } = this.props;
+		if (!this.props.user || !this.props.user.id) {
+			dispatch(fetchUser());
+		}
+	}
 	render() {
 		return (
 			<div className="wrapper">
@@ -31,4 +50,5 @@ class Full extends Component {
 	}
 }
 
+Full.propTypes = propTypes;
 export default connect(mapStateToProps)(Full);

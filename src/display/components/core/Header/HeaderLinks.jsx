@@ -4,10 +4,11 @@ import { NavItem, Nav, NavDropdown, MenuItem } from 'react-bootstrap';
 
 class HeaderLinks extends Component {
 	render() {
+		const { user } = this.props;
 		return (
 			<div>
 				<Nav pullRight>
-					<NavItem>rosalind.m.wills@gmail.com</NavItem>
+					<NavItem>{user ? user.email : ''}</NavItem>
 					<NavItem href="#">Log out</NavItem>
 				</Nav>
 			</div>
