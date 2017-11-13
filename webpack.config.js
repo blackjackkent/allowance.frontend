@@ -15,9 +15,7 @@ console.log('SRC_DIR', SRC_DIR);
 
 module.exports = (env = {}) => {
 	return {
-		entry: {
-			index: [SRC_DIR + '/index.jsx']
-		},
+		entry: ['babel-polyfill', SRC_DIR + '/index.js'],
 		output: {
 			path: BUILD_DIR,
 			publicPath: '/',
@@ -104,8 +102,7 @@ module.exports = (env = {}) => {
 				}
 			),
 			new CopyWebpackPlugin([
-				{ from: './public/img', to: 'img' },
-				{ from: './web.config', to: 'web.config' }
+				{ from: './public/img', to: 'img' }
 			],
 				{ copyUnmodified: false }
 			)

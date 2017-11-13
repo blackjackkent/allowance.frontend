@@ -1,0 +1,14 @@
+// Sidebar
+.sidebar .logo .simple-text, body > .navbar-collapse .logo .simple-text { text-align: center; }
+
+// Header
+.navbar .btn { margin: 10px 3px; }
+
+// Dashboard
+
+.dashboard-summary-header {text-align: center;}
+.dashboard-summary-header h2 { margin: 30px;}
+.text-info.savings-card-icon { color: $info-color !important; }
+.text-info.bills-card-icon { color: $warning-color !important; }
+.text-info.income-card-icon { color: $success-color !important; }
+.text-info.expenses-card-icon { color: $danger-color !important; }
