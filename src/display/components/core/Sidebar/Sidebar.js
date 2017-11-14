@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import HeaderLinks from '../Header/HeaderLinks';
-import appRoutes from '../../../../routes/routes';
+import AppRoutes from '../../../../routes/routes';
+const routes = new AppRoutes();
 
 const propTypes = {
 	location: PropTypes.shape({
@@ -28,6 +29,7 @@ class Sidebar extends Component {
 		this.setState({ width: window.innerWidth });
 	}
 	render() {
+		const { user } = this.props;
 		return (
 			<div id="sidebar" className="sidebar" data-color="black">
 				<div className="sidebar-background" />
@@ -38,9 +40,9 @@ class Sidebar extends Component {
 				</div>
 				<div className="sidebar-wrapper">
 					<ul className="nav">
-						{this.state.width <= 991 ? (<HeaderLinks />) : null}
+						{this.state.width <= 991 ? (<HeaderLinks user={user} />) : null}
 						{
-							appRoutes.map((prop) => {
+							routes.getRoutes().map((prop) => {
 								if (!prop.redirect) {
 									return (
 										<li className={prop.upgrade ? 'active active-pro' : this.activeRoute(prop.path)} key={prop.path}>

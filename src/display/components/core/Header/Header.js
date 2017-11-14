@@ -3,7 +3,8 @@ import { Navbar } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
 import HeaderLinks from './HeaderLinks';
-import appRoutes from '../../../../routes/routes';
+import AppRoutes from '../../../../routes/routes';
+const routes = new AppRoutes();
 
 const propTypes = {
 	user: PropTypes.shape({
@@ -38,34 +39,13 @@ class Header extends Component {
 		};
 		document.body.appendChild(node);
 	}
-	getBrand() {
-		let name;
-		appRoutes.map((route) => {
-			if (route.collapse) {
-				route.views.map((prop) => {
-					if (prop.path === this.props.location.pathname) {
-						({ name } = prop);
-					}
-					return null;
-				});
-			} else if (route.redirect) {
-				if (route.path === this.props.location.pathname) {
-					({ name } = route);
-				}
-			} else if (route.path === this.props.location.pathname) {
-				({ name } = route);
-			}
-			return null;
-		});
-		return name;
-	}
 	render() {
-		const { user } = this.props;
+		const { user, location } = this.props;
 		return (
 			<Navbar fluid={true}>
 				<Navbar.Header>
 					<Navbar.Brand>
-						<a href="/">{this.getBrand()}</a>
+						<a href="/">{routes.getBrandFromPath(location.pathname)}</a>
 					</Navbar.Brand>
 					<Navbar.Toggle onClick={this.mobileSidebarToggle} />
 					<a href="/transaction/add" className="btn btn-success">Record Transaction</a>
