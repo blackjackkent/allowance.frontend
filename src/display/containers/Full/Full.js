@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 
 import Dashboard from '../../views/Dashboard';
 import Sidebar from '../../components/core/Sidebar/Sidebar';
-import Header from '../../components/core/Header/Header';
+import HeaderContainer from '../../components/core/Header/HeaderContainer';
 import Footer from '../../components/core/Footer/Footer';
 import { fetchUser } from '../../../infrastructure/actions';
 
@@ -36,7 +36,7 @@ class Full extends Component {
 			<div className="wrapper">
 				<Sidebar {...this.props} />
 				<div id="main-panel" className="main-panel">
-					<Header {...this.props} />
+					<HeaderContainer {...this.props} />
 					<Switch>
 						<Route path="/dashboard" name="Dashboard" component={Dashboard} />
 						<Redirect from="/" to="/dashboard" />
