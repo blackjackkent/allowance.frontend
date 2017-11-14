@@ -1,21 +1,19 @@
 import React, { Component } from 'react';
 import { Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Container } from 'reactstrap';
 import PropTypes from 'prop-types';
 
 import Dashboard from '../../views/Dashboard';
 import Sidebar from '../../components/core/Sidebar/Sidebar';
 import Header from '../../components/core/Header/Header';
 import Footer from '../../components/core/Footer/Footer';
-import appRoutes from '../../../routes/routes.js';
 import { fetchUser } from '../../../infrastructure/actions';
 
 
 const propTypes = {
 	dispatch: PropTypes.func.isRequired,
 	user: PropTypes.shape({
-		id: PropTypes.string.isRequired
+		id: PropTypes.string
 	}).isRequired
 };
 function mapStateToProps(state) {

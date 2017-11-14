@@ -2,14 +2,15 @@ import React, { Component } from 'react';
 import { Navbar } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 
-import HeaderLinks from './HeaderLinks.jsx';
-
-import appRoutes from '../../../../routes/routes.js';
-
+import HeaderLinks from './HeaderLinks';
+import appRoutes from '../../../../routes/routes';
 
 const propTypes = {
 	user: PropTypes.shape({
 		id: PropTypes.string
+	}).isRequired,
+	location: PropTypes.shape({
+		pathname: PropTypes.string
 	}).isRequired
 };
 
@@ -26,54 +27,48 @@ class Header extends Component {
 			this.setState({
 				sidebarExists: true
 			});
-
 		}
 		e.preventDefault();
 		document.documentElement.classList.toggle('nav-open');
-		var node = document.createElement('div');
+		const node = document.createElement('div');
 		node.id = 'bodyClick';
-		node.onclick = function () {
+		node.onclick = function toggleSidebar() {
 			this.parentElement.removeChild(this);
 			document.documentElement.classList.toggle('nav-open');
 		};
 		document.body.appendChild(node);
 	}
 	getBrand() {
-		var name;
-		appRoutes.map((prop, key) => {
-			if (prop.collapse) {
-				prop.views.map((prop, key) => {
+		let name;
+		appRoutes.map((route) => {
+			if (route.collapse) {
+				route.views.map((prop) => {
 					if (prop.path === this.props.location.pathname) {
-						name = prop.name;
+						({ name } = prop);
 					}
 					return null;
-				})
-			} else {
-				if (prop.redirect) {
-					if (prop.path === this.props.location.pathname) {
-						name = prop.name;
-					}
-				} else {
-					if (prop.path === this.props.location.pathname) {
-						name = prop.name;
-					}
+				});
+			} else if (route.redirect) {
+				if (route.path === this.props.location.pathname) {
+					({ name } = route);
 				}
+			} else if (route.path === this.props.location.pathname) {
+				({ name } = route);
 			}
 			return null;
-		})
+		});
 		return name;
 	}
 	render() {
 		const { user } = this.props;
 		return (
-			<Navbar fluid>
+			<Navbar fluid={true}>
 				<Navbar.Header>
 					<Navbar.Brand>
 						<a href="/">{this.getBrand()}</a>
 					</Navbar.Brand>
 					<Navbar.Toggle onClick={this.mobileSidebarToggle} />
-
-					<a href="#" className='btn btn-success'>Record Transaction</a>
+					<a href="/transaction/add" className="btn btn-success">Record Transaction</a>
 				</Navbar.Header>
 				<Navbar.Collapse>
 					<HeaderLinks user={user} />
@@ -82,5 +77,5 @@ class Header extends Component {
 		);
 	}
 }
-
+Header.propTypes = propTypes;
 export default Header;

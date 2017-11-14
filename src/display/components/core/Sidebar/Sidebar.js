@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-import HeaderLinks from '../Header/HeaderLinks.jsx';
+import HeaderLinks from '../Header/HeaderLinks';
+import appRoutes from '../../../../routes/routes';
 
-import appRoutes from '../../../../routes/routes.js';
-
+const propTypes = {
+	location: PropTypes.shape({
+		pathname: PropTypes.string
+	}).isRequired
+};
 class Sidebar extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			width: window.innerWidth
-		}
+		};
+	}
+	componentDidMount() {
+		this.updateDimensions();
+		window.addEventListener('resize', this.updateDimensions.bind(this));
 	}
 	activeRoute(routeName) {
 		return this.props.location.pathname.indexOf(routeName) > -1 ? 'active' : '';
@@ -18,33 +27,30 @@ class Sidebar extends Component {
 	updateDimensions() {
 		this.setState({ width: window.innerWidth });
 	}
-	componentDidMount() {
-		this.updateDimensions();
-		window.addEventListener("resize", this.updateDimensions.bind(this));
-	}
 	render() {
 		return (
 			<div id="sidebar" className="sidebar" data-color="black">
-				<div className="sidebar-background"></div>
+				<div className="sidebar-background" />
 				<div className="logo">
 					<a href="/" className="simple-text logo-normal">
 						Allowance
-                        </a>
+					</a>
 				</div>
 				<div className="sidebar-wrapper">
 					<ul className="nav">
 						{this.state.width <= 991 ? (<HeaderLinks />) : null}
 						{
-							appRoutes.map((prop, key) => {
-								if (!prop.redirect)
+							appRoutes.map((prop) => {
+								if (!prop.redirect) {
 									return (
-										<li className={prop.upgrade ? "active active-pro" : this.activeRoute(prop.path)} key={key}>
+										<li className={prop.upgrade ? 'active active-pro' : this.activeRoute(prop.path)} key={prop.path}>
 											<NavLink to={prop.path} className="nav-link" activeClassName="active">
-												<i className={`fa ${prop.icon}`}></i>
+												<i className={`fa ${prop.icon}`} />
 												<p>{prop.name}</p>
 											</NavLink>
 										</li>
 									);
+								}
 								return null;
 							})
 						}
@@ -54,5 +60,5 @@ class Sidebar extends Component {
 		);
 	}
 }
-
+Sidebar.propTypes = propTypes;
 export default Sidebar;
