@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Dashboard from '../../views/Dashboard';
-import Sidebar from '../../components/core/Sidebar/Sidebar';
+import SidebarContainer from '../../components/core/Sidebar/SidebarContainer';
 import HeaderContainer from '../../components/core/Header/HeaderContainer';
 import Footer from '../../components/core/Footer/Footer';
 import { fetchUser } from '../../../infrastructure/actions';
@@ -34,7 +34,7 @@ class Full extends Component {
 	render() {
 		return (
 			<div className="wrapper">
-				<Sidebar {...this.props} />
+				<SidebarContainer {...this.props} />
 				<div id="main-panel" className="main-panel">
 					<HeaderContainer {...this.props} />
 					<Switch>

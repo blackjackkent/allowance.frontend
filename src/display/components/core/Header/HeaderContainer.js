@@ -5,11 +5,14 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import { toggleMobileSidebar } from '../../../../infrastructure/actions';
 import AppRoutes from '../../../../routes/routes';
-const routes = new AppRoutes();
 
+const routes = new AppRoutes();
 const propTypes = {
 	dispatch: PropTypes.func.isRequired,
-	isMobileSidebarOpen: PropTypes.bool.isRequired
+	isMobileSidebarOpen: PropTypes.bool.isRequired,
+	location: PropTypes.shape({
+		pathname: PropTypes.string
+	}).isRequired
 };
 
 function mapStateToProps(state) {

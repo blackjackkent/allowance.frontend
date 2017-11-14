@@ -1,5 +1,13 @@
 import Dashboard from '../display/views/Dashboard';
 
+const appRoutes = [
+	{
+		path: '/dashboard',
+		name: 'Dashboard',
+		icon: 'fa-dashboard',
+		component: Dashboard
+	}
+];
 class AppRoutes {
 	constructor() {
 		this.routes = appRoutes;
@@ -29,13 +37,5 @@ class AppRoutes {
 		return name;
 	}
 }
-const appRoutes = [
-	{
-		path: '/dashboard',
-		name: 'Dashboard',
-		icon: 'fa-dashboard',
-		component: Dashboard
-	}
-];
 
 export default AppRoutes;

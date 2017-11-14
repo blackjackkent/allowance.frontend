@@ -1,9 +1,13 @@
 // Sidebar
+.sidebar .nav { margin-top: 0; }
 .sidebar .sidebar-wrapper > .nav > div .nav > li > a { font-size: 10px;}
 .sidebar .logo .simple-text, body > .navbar-collapse .logo .simple-text { text-align: center; }
 
 // Header
 .navbar .btn { margin: 10px 3px; }
+
+// Footer
+.footer { padding: 0 10px; }
 
 // Dashboard
 

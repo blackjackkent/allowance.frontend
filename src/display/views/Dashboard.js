@@ -39,8 +39,7 @@ class Dashboard extends Component {
 							<div className="dashboard-summary-header card">
 								<div className="content all-icons">
 									<h2>For the remainder of the month, you can
-										spend
-										<NumberFormat
+										spend <NumberFormat
 											decimalScale={2}
 											value={budget ? budget.remainingSpendPerDay : ''}
 											displayType="text"
