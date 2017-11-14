@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-bootstrap';
-import NumberFormat from 'react-number-format';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import NumberFormat from 'react-number-format';
 
 import StatsCard from '../components/core/StatsCard/StatsCard';
+import DashboardSummaryHeader from '../components/dashboard/DashboardSummaryHeader/DashboardSummaryHeader';
 import { fetchBudget } from '../../infrastructure/actions';
 
 
@@ -36,20 +37,7 @@ class Dashboard extends Component {
 				<Grid fluid={true}>
 					<Row>
 						<Col xs={12}>
-							<div className="dashboard-summary-header card">
-								<div className="content all-icons">
-									<h2>For the remainder of the month, you can
-										spend <NumberFormat
-											decimalScale={2}
-											value={budget ? budget.remainingSpendPerDay : ''}
-											displayType="text"
-											thousandSeparator={true}
-											prefix="$"
-											renderText={value => <span>{value}</span>}
-										/> per day!
-									</h2>
-								</div>
-							</div>
+							<DashboardSummaryHeader remainingSpendPerDay={budget.remainingSpendPerDay} />
 						</Col>
 					</Row>
 					<Row>
